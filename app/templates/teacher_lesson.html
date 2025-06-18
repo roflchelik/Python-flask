@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Проведение занятия</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link
+   rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+ />
+</head>
+<body style="background-color: #8a2be2;">
+    {% for mesg in get_flashed_messages() %}
+      <h1>{{ mesg }}</h1>
+    {% endfor %}
+ <div class="container">
+   <h2 style="color: white; text-align: center;font-weight: bold;">Проведение урока</h2>
+   <div class="row justify-content-center">
+     <div class="col-md-6">
+       <form method="post" class="mt-4 p-3" style="background-color: #fff; border-radius: 5px;">
+         {{ form.hidden_tag() }}
+           <table>
+                <td>ФИО</td>
+                <td>Оценка</td>
+                <td><button type="submit">Завершить занятие</button></td>
+               {% for this in st %}
+                   <tr>
+                       <td>{{ this[0] }}</td>
+                       <td>
+                           <select id = "value{{ loop.index }}" name="value" required>
+                               <option value="0">Ученик на месте</option>
+                               <option value="1">1</option>
+                               <option value="2">2</option>
+                               <option value="3">3</option>
+                               <option value="4">4</option>
+                               <option value="5">5</option>
+                               <option value="6">Ученик отсутствует</option>
+                           </select>
+                       </td>
+                   </tr>
+               {% endfor %}
+           </table>
+       </form>
+     </div>
+   </div>
+ </div>
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

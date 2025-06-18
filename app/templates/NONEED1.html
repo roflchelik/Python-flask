@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Добавить учителя</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link
+   rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+ />
+</head>
+<body style="background-color: #8a2be2;">
+    <li><a href="{{ url_for('admin')}}">Главная</a> </li>
+    {% for mesg in get_flashed_messages() %}
+      <h1>{{ mesg }}</h1>
+    {% endfor %}
+ <div class="container">
+   <h2 style="color: white; text-align: center;font-weight: bold;">Редактирование списка учителей</h2>
+   <div class="row justify-content-center">
+     <div class="col-md-6">
+       <form method="post" class="mt-4 p-3" style="background-color: #fff; border-radius: 5px;">
+         {{ form.hidden_tag() }}
+         <div class="form-group">
+           {{ form.fio.label }}
+           {{ form.fio(class="form-control") }}
+           {% for error in form.fio.errors %}
+             <small class="text-danger">{{ error }}</small>
+           {% endfor %}
+         </div>
+         <div class="form-group">
+           {{ form.login.label }}
+           {{ form.login(class="form-control") }}
+           {% for error in form.login.errors %}
+             <small class="text-danger">{{ error }}</small>
+           {% endfor %}
+         </div>
+         <div class="form-group">
+           {{ form.password.label }}
+           {{ form.password(class="form-control") }}
+           {% for error in form.password.errors %}
+             <small class="text-danger">{{ error }}</small>
+           {% endfor %}
+         </div>
+         {{ form.submit(class="btn btn-primary") }}
+       </form>
+     </div>
+   </div>
+ </div>
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

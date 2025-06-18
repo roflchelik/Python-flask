@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+<ul class="mainmenu">
+    {% if not current_user.is_authenticated %}
+    <p>Вы не вошли в систему.</p>
+    <a href="{{ url_for('login') }}">Авторизация</a>
+    {% endif %}
+</ul>
+<div class="content">
+{% block content %}
+{% endblock %}
+</div>
+</body>
+</html>

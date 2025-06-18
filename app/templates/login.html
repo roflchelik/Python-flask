@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Вход</title>
+        <!-- подключаем бутстрап -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+    {% for mesg in get_flashed_messages() %}
+        <h1>{{ mesg }}</h1>
+    {% endfor %}
+        <!-- создаём контейнер -->
+        <div class="container">
+            <div class="row">
+                <!-- указываем стиль адаптивной вёрстки -->
+                <div class="col-md-12">
+                    <!-- пишем заголовок и пояснительный текст -->
+                    <h2>Вход</h2>
+                    <p>Введите свой логин и пароль.</p>
+                    <!-- метод, которым будем работать с формой — отправлять на сервер -->
+                    <form action="" method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form.login.label }}
+                            {{ form.login(class="form-control") }}
+                            {% for error in form.login.errors %}
+                                <small class="text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.password.label }}
+                            {{ form.password(class="form-control") }}
+                            {% for error in form.password.errors %}
+                                <small class="text-danger">{{ error }}</small>
+                            {% endfor %}
+                        </div>
+                        {{ form.submit(class="btn btn-primary") }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

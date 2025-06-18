@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet"/>
+    <title>{{ title }}</title>
+</head>
+<body style="background-color: #83b5c2;>
+    {% for mesg in get_flashed_messages() %}
+        <h1>{{ mesg }}</h1>
+    {% endfor %}
+<ul class="mainmenu">
+    {% if current_user.is_authenticated %}
+    <p>Добро пожаловать, {{ current_user.login[0] }}!</p>
+    <li><a href="{{ url_for('show_students_admin')}}">Редактировать список учеников</a> </li>
+    <li><a href="{{ url_for('show_teachers_admin')}}">Редактировать список учителей</a> </li>
+    <li><a href="{{ url_for('show_subjects')}}">Редактировать список предметов</a> </li>
+    <li><a href="{{ url_for('show_offices')}}">Редактировать список кабинетов</a> </li>
+    <li><a href="{{ url_for('show_classes')}}">Редактировать список классов</a> </li>
+    <li><a href="{{ url_for('show_class')}}">Просмотреть список учеников</a> </li>
+    <li><a href="{{ url_for('show_teachers')}}">Просмотреть список учителей</a> </li>
+    <a href="{{ url_for('logout') }}">Выйти</a>
+    {% else %}
+    <p>Вы не вошли в систему.</p>
+    <a href="{{ url_for('login') }}">Авторизация</a>
+    {% endif %}
+</ul>
+<div class="content">
+{% block content %}
+{% endblock %}
+</div>
+</body>
+</html>

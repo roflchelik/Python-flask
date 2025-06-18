@@ -1,0 +1,14 @@
+<html>
+<head>
+    <link type="text/css" href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet"/>
+    <title>{{ title }}</title>
+</head>
+    <li><a href="{{ url_for('teacher')}}">Главная</a>
+    <li><a href="{{ url_for('show_class')}}">Вернуться назад</a>
+    </li><table id="students">
+  {% for this in st %}
+  <tr>
+    <td>{{ this[0] }}</td>
+  </tr>
+{% endfor %}
+</table>

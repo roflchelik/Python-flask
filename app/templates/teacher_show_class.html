@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Table Attributes</title>
+</head>
+<body>
+    <li><a href="{{ url_for('teacher')}}">Вернуться назад</a> </li>
+{% for row in tclass %}
+<button onclick="location.href='/teacher/class/{{ row[0] }}'">{{ row[0] }} класс</button>
+{% endfor %}
+</body>
+</html>

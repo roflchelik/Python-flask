@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Предметы</title>
+</head>
+<body>
+    {% for mesg in get_flashed_messages() %}
+      <h1>{{ mesg }}</h1>
+    {% endfor %}
+<ul class="mainmenu">
+    {% if current_user.is_authenticated %}
+    <li><a href="{{ url_for('student')}}">Главная</a> </li>
+    <p> {{ fio[0] }}.</p>
+    {% else %}
+    <p>Вы не вошли в систему.</p>
+    <a href="{{ url_for('login') }}">Авторизация</a>
+    {% endif %}
+</ul>
+<form method="post">
+    {{ form.hidden_tag }}
+    <select id = "select" name="value" required>
+        {% for month in months %}
+        <option value="{{ loop.index-1 }}">{{ month }}</option>
+        {% endfor %}
+    </select>
+    <td><button type="submit">Показать успеваемость</button></td>
+
+    <table class="table">
+    <tbody>
+        <tr><th></th>
+        {% for a in head %}
+            <th>{{ a[0] }}</th>
+        {% endfor %}</tr>
+        <tr><th></th>
+            {% for a in head %}
+            <th>{{ a[1] }}</th>
+        {% endfor %}</tr>
+        {% for subject in subjects %}
+            <tr>
+            <td>{{ subject[0] }}</td>
+                {% for day in range(days) %}
+                    {% for item in form %}
+                        {% if item[1] == subject[0] and item[0] == day+1 %}
+                            <td>{{ item[2] }}</td>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</body>
+</html>
+<style type="text/css">
+.table {
+	border: 2px solid #eee;
+	width: 70%;
+	margin-bottom: 30px;
+}
+.table th {
+	font-weight: bold;
+	padding: 5px;
+	background: #efefef;
+	border: 2px solid #dddddd;
+}
+td:first-child {
+   width: 1%;
+}
+.table td{
+	padding: 5px 5px;
+	border: 2px solid #eee;
+	text-align: left;
+}
+
+.table tbody tr:nth-child(odd){
+	background: #fff;
+}
+.table tbody tr:nth-child(even){
+	background: #F7F7F7;
+}
+</style>
